@@ -1,14 +1,16 @@
-import express from 'express';
-import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express,{Express} from 'express';
 import viewEngine from './config/viewEngine';
-import initWebRoutes from './routes/web';
-import connectDB from './config/connectDB';
+import initWebRoutes from './route/web';
+import connectDB from './config/configdb';
 require('dotenv').config();
 
 let app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 viewEngine(app);
 initWebRoutes(app);
 connectDB();

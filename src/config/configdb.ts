@@ -1,13 +1,17 @@
-import { Sequelize, Squelize } from 'sequelize';
+import { Sequelize  } from 'sequelize';
+import dotenv from 'dotenv';
+dotenv.config();
 //cosnt { Sequelize } = require('sequelize'); //ES5 module
 
+
 //Option 3:Passing parameter separately (other dialects)
-const sequelize = new Sequelize('node_fullstack', 'root', '1234567@a$', {
+export const sequelize = new Sequelize('node_fullstack', 'root', '1234567@a$', {
     host: 'localhost',
     dialect: 'mysql',   
-    logging: fale
+    logging: false,
+    
 });
-let connectDB = async () => {
+export const connectDB = async () => {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
@@ -15,4 +19,4 @@ let connectDB = async () => {
         console.error('Unable to connect to the database:', error);
     }
 }
-module.exports = connectDB
+export default connectDB;
